@@ -1,7 +1,7 @@
 import {useState, useContext} from 'react'
 import {UserContext} from '../Context/UserContext'
 import axios from 'axios'
-import {Redirect} from 'react-router-dom'
+
 
 const Register = () => {
     const {userState} = useContext(UserContext)
@@ -14,13 +14,15 @@ const Register = () => {
     
     const registerSubmit = async (e) => {
         e.preventDefault()
+        console.log(password,name,email)
         let res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/create`, {
-            username: name,
+            name: name,
             email: email,
             password: password,
         })
-        console.log(res.data.userId)
-        localStorage.setItem('userId', res.data.userId)
+        
+        console.log(res.data)
+        localStorage.setItem('userId', res.data.encryptedId)
         setUser(res.data.user)
     }
 
