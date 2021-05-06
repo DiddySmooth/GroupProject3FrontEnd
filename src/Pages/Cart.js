@@ -4,7 +4,7 @@ import CartProduct from '../Components/CartProduct'
 import {Link} from 'react-router-dom'
 const Cart = () => {
     const[cart,setCart] = useState([])
-    const[products, setProducts] = useState([])
+    const[products, setProducts] = useState()
 
     const getCart = async() => {
         
@@ -32,33 +32,27 @@ const Cart = () => {
     const getCartItems = async() => {
         let newArray = []
         cart.map( async (entry, i) => {
-            
-            try {
-                const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/products/${entry.productId}`, {})
-                newArray.push(res.data)
-                
-            } catch (error) {
-                console.log(error)
-            }
-            
+            const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/products/${entry.productId}`)
+            newArray.push(res.data)
+            setProducts(newArray)
         })
-        console.log(newArray)
-        setProducts(newArray)
     }
+
     useEffect(() => {
         getCartItems()
-        console.log(products)
     }, [cart])
 
+    
 
+ console.log(products)
     
 
     return (
         <div>
-            {products.length>1 && products.map((product, i) =>
-            <Link to={`/products/${product.id}`} key={i}>
-                <CartProduct onClick="sup"  name={product.name} description={product.description} picture={product.image} price={product.price}/>
-            </Link>
+            
+            {products && products.map((product, i) =>
+            product && 
+                <CartProduct key={i}  cartId={product.id} name={product.name} description={product.description} picture={product.image} price={product.price}/>
             )}
         </div>
     )   
