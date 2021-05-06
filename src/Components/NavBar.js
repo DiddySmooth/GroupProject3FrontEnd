@@ -1,6 +1,7 @@
 import {useContext} from 'react'
 import {UserContext} from '../Context/UserContext'
 import {Link} from 'react-router-dom'
+import '../Styles/NavBar.css'
 const NavBar = () => {
     const {userState} = useContext(UserContext)
     const[user,setUser] = userState
