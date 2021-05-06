@@ -1,6 +1,7 @@
 import {useContext} from 'react'
 import {UserContext} from '../Context/UserContext'
 import {Link} from 'react-router-dom'
+import '../Styles/NavBar.css'
 const NavBar = () => {
     const {userState} = useContext(UserContext)
     const[user,setUser] = userState
@@ -13,6 +14,7 @@ const NavBar = () => {
         <div className="navBarContainer">
             {user ?
             <>
+            <Link className="navLink" to="/cart">Cart</Link>
             <span  onClick={() => logout()}><Link className="navLink" to="/">Logout</Link></span>
             </>
             :
