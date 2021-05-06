@@ -1,8 +1,9 @@
 import axios from 'axios'
 const CartProduct = (props) => {
-    const deleteFromCart = async (id) => {
+    console.log(props.id)
+    const deleteFromCart = async () => {
         const res = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/cart`, {
-            id: id
+            id: props.id
         })
     }
     return (
