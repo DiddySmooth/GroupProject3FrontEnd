@@ -8,6 +8,7 @@ import Register from "./Pages/Register"
 import Store from "./Pages/Store"
 import NavBar from './Components/NavBar'
 import SingleProduct from './Pages/SingleProduct';
+import Cart from './Pages/Cart';
 
 function App() {
   const {userState} = useContext(UserContext)
@@ -34,6 +35,9 @@ function App() {
       </Route>
       <Route exact path="/products/:id">
           <SingleProduct />
+      </Route>
+      <Route exact path="/cart">
+          <Cart />
       </Route>
     </div>
   );
