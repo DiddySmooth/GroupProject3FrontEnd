@@ -25,18 +25,21 @@ const Cart = () => {
         }
         
     }
+    console.log(cart)
     useEffect(() => {
         getCart()
     }, [])
 
     const getCartItems = async() => {
-        let newArray = []
-        cart.map( async (entry, i) => {
-            const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/products/${entry.productId}`)
-            newArray.push(res.data)
-            setProducts(newArray)
-        })
-    }
+        const items = await Promise.all(
+            cart.map( async (entry, i) => {
+              const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/products/${entry.productId}`)
+              return res.data
+            })
+          )
+          setProducts(items);
+      }
+ 
 
     useEffect(() => {
         getCartItems()
@@ -52,7 +55,7 @@ const Cart = () => {
             
             {products && products.map((product, i) =>
             product && 
-                <CartProduct key={i}  cartId={product.id} name={product.name} description={product.description} picture={product.image} price={product.price}/>
+                <CartProduct key={i}  cartId="" name={product.name} description={product.description} picture={product.image} price={product.price}/>
             )}
         </div>
     )   
