@@ -14,6 +14,7 @@ const NavBar = () => {
         <div className="navBarContainer">
             {user ?
             <>
+            <Link className="navLink" to="/cart">Cart</Link>
             <span  onClick={() => logout()}><Link className="navLink" to="/">Logout</Link></span>
             </>
             :

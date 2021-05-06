@@ -23,9 +23,11 @@ const SingleProduct = () => {
     useEffect(() => {
         getProduct()
     }, [])
+
+    
     return (
         <div>
-            <BuyProduct onClick="sup"  name={products.name} description={products.description} picture={products.image} price={products.price}/>    
+            <BuyProduct name={products.name} description={products.description} picture={products.image} price={products.price}/>    
         </div>
     )
 }
