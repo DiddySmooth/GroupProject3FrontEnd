@@ -2,6 +2,7 @@ import {useParams} from 'react-router-dom'
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 import BuyProduct from '../Components/BuyProduct'
+import "../Styles/Store.css"
 
 const SingleProduct = () => {
     const params = useParams()
@@ -26,8 +27,10 @@ const SingleProduct = () => {
 
     
     return (
-        <div>
-            <BuyProduct name={products.name} description={products.description} picture={products.image} price={products.price}/>    
+        <div className='productmain'>
+            <div className='productcontainer'>
+                <BuyProduct name={products.name} description={products.description} picture={products.image} price={products.price}/>    
+            </div>
         </div>
     )
 }

@@ -2,6 +2,7 @@ import axios from 'axios'
 import {useState, useEffect} from 'react'
 import CartProduct from '../Components/CartProduct'
 import {Link} from 'react-router-dom'
+import "../Styles/Store.css"
 const Cart = () => {
     const[cart,setCart] = useState([])
     const[products, setProducts] = useState()
@@ -103,27 +104,30 @@ const Cart = () => {
 
 
     return (
-        <div>
-            { checkout ?
-            <>
-            <form onSubmit={submitCheckout}>
-                <input className="checkout" type="text" placeholder="Address" value={address} onChange={(e) => setAddress(e.target.value)} />
-                <input className="checkout" type="text" placeholder="Credit Card Number" value={credit} onChange={(e) => setCredit(e.target.value)} />
-                <input className="checkout" type="submit" value="submit" />
-            </form>
-            </>
-            :
-            <>
-            <h2>Total Price: ${total}</h2>
-            {products && products.map((product, i) =>
-            product && 
-                <CartProduct setReget={setReget} getCartItems={getCartItems} key={i}  id={product.id} name={product.name} description={product.description} picture={product.image} price={product.price}/>
-                
-            )}
-            <button onClick={ () => {checkoutCart()}}>Checkout</button>
-            <button onClick={ () => {emptyCart()}}>Empty Cart</button>
-            </>
-            }
+        <div className='productmain'>
+
+            <div className='productcontainer'>
+                { checkout ?
+                <>
+                <form onSubmit={submitCheckout}>
+                    <input className="checkout" type="text" placeholder="Address" value={address} onChange={(e) => setAddress(e.target.value)} />
+                    <input className="checkout" type="text" placeholder="Credit Card Number" value={credit} onChange={(e) => setCredit(e.target.value)} />
+                    <input className="checkout" type="submit" value="submit" />
+                </form>
+                </>
+                :
+                <>
+                <h2>Total Price: ${total}</h2>
+                {products && products.map((product, i) =>
+                product && 
+                    <CartProduct setReget={setReget} getCartItems={getCartItems} key={i}  id={product.id} name={product.name} description={product.description} picture={product.image} price={product.price}/>
+                    
+                )}
+                <button onClick={ () => {checkoutCart()}}>Checkout</button>
+                <button onClick={ () => {emptyCart()}}>Empty Cart</button>
+                </>
+                }
+            </div>
         </div>
     )   
 }
