@@ -12,7 +12,7 @@ const NavBar = () => {
     }
     return(
         <div className="navBarContainer">
-            {user ?
+            {localStorage.getItem('userId') ?
             <>
             <Link className="navLink" to="/cart">Cart</Link>
             <span  onClick={() => logout()}><Link className="navLink" to="/">Logout</Link></span>
