@@ -3,6 +3,7 @@ import axios from 'axios'
 import {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import {useParams} from 'react-router-dom'
+import "../Styles/Store.css"
 
 const Store = () => {
     const[allProducts,setAllProducts] = useState([])

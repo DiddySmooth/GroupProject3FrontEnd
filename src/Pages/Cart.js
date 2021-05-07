@@ -2,6 +2,8 @@ import axios from 'axios'
 import {useState, useEffect} from 'react'
 import CartProduct from '../Components/CartProduct'
 import {Redirect} from 'react-router-dom'
+import {Link} from 'react-router-dom'
+import "../Styles/Store.css"
 const Cart = () => {
     const[cart,setCart] = useState([])
     const[products, setProducts] = useState()
