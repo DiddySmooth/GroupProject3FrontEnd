@@ -8,18 +8,25 @@ const NavBar = () => {
 
     const logout = () => {
         localStorage.removeItem("userId")
-        setUser(null)
+        setUser({})
     }
+
     return(
         <div className="navBarContainer">
-            {user ?
+            <Link className="navLink" to='/'>Home</Link>
+
+            {localStorage.getItem('userId') ?
             <>
             <Link className="navLink" to="/cart">Cart</Link>
-            <span  onClick={() => logout()}><Link className="navLink" to="/">Logout</Link></span>
+            <Link className="navLink" to="/store">Store</Link>
+            <Link className="navLink" to="/orders">Orders</Link>
+            <span  onClick={() => logout()}>
+                <Link className="navLink" to="/">Logout</Link>
+                </span>
             </>
             :
             <>
-            <Link className="navLink" to="/store">Store</Link>
+            
             <Link className="navLink" to="/register">Register</Link>
             <Link className="navLink" to="/login">Login</Link> 
             </>

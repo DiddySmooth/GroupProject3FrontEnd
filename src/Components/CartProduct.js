@@ -1,19 +1,31 @@
+import { render } from '@testing-library/react'
 import axios from 'axios'
 const CartProduct = (props) => {
     console.log(props)
+
     const deleteFromCart = async () => {
         const res = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/cart`, {
-            id: props.cartId
+            headers: {
+                id: props.id
+            }
+           
         })
+        
+        props.getCartItems()
+        props.setReget(1)
+        console.log(res)
+        console.log(props)
+
     }
+
     return (
         <div>
             <p>{props.name}</p>
             <p>{props.description}</p>
-            <img src={props.picture} />
+            <img className="pics" src={props.picture} />
             <p>{props.price}</p>
-            <button onClick={ () => {deleteFromCart(props.cartId)}} >Remove From Cart</button>
+            <button onClick={ () => deleteFromCart()}>Remove From Cart</button>
         </div>
     )
 }
-export default CartProduct
+export default CartProduct  

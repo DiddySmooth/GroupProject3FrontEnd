@@ -1,4 +1,7 @@
-const Product = (props) => {
+import axios from 'axios'
+const OrderHistoryProduct = (props) => {
+        
+    
     return (
         <div>
             <p>{props.name}</p>
@@ -8,4 +11,4 @@ const Product = (props) => {
         </div>
     )
 }
-export default Product
+export default OrderHistoryProduct
