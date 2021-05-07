@@ -17,25 +17,25 @@ function App() {
   const { userState } = useContext(UserContext)
   const [user, setUser] = userState
 
-  // const getUserInfo = async () => {
-  //   const userId = localStorage.getItem('userId')
-  //   try {
-  //     let res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/user/info`, {
-  //       headers: {
-  //         Authorization: userId
-  //       }
-  //     })
+  const getUserInfo = async () => {
+    const userId = localStorage.getItem('userId')
+    try {
+      let res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/user/info`, {
+        headers: {
+          Authorization: userId
+        }
+      })
       
-  //     if (res.data.user) {
-  //       setUser(res.data.user)
-  //       console.log(res.data.user)
-  //     }
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
+      if (res.data.user) {
+        setUser(res.data.user)
+        console.log(res.data.user)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
-  // useEffect(() => { getUserInfo() }, [])
+  useEffect(() => { getUserInfo() }, [])
 
 
   return (
