@@ -9,7 +9,8 @@ import Store from "./Pages/Store"
 import NavBar from './Components/NavBar'
 import SingleProduct from './Pages/SingleProduct';
 import Cart from './Pages/Cart';
-
+import OrderHistory from './Pages/OrderHistory'
+import OneOrder from './Pages/OneOrder';
 function App() {
   const {userState} = useContext(UserContext)
   const[user,setUser] = userState
@@ -38,6 +39,12 @@ function App() {
       </Route>
       <Route exact path="/cart">
           <Cart />
+      </Route>
+      <Route exact path="/orders">
+          <OrderHistory />
+      </Route>
+      <Route exact path="/orders/:id">
+          <OneOrder />
       </Route>
     </div>
   );

@@ -29,11 +29,7 @@ const Store = () => {
     console.log(allProducts)
     return(
         <div>
-            {allProducts.map((product, i) =>
-            <Link to={`/products/${product.id}`} key={i}>
-                <Product name={product.name} description={product.description} picture={product.image} price={product.price}/>
-            </Link>
-            )}
+            
         </div>
     )
 }

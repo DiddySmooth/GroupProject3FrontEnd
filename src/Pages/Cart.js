@@ -65,21 +65,32 @@ const Cart = () => {
         setCheckout(true)
     }
     
-    const submitCheckout = () => {
+    const submitCheckout =  async (e) => {
         e.preventDefault()
-
         const userId = localStorage.getItem('userId')
+        const groupId = userId + "|" + new Date()
+        console.log(groupId)
         cart.map( async (entry, i) => {
-            let res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}`, {
+            let res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/orders`, {
                 userId: userId,
                 productId: entry.productId,
                 creditcard: credit,
-                address: address
-                
+                address: address,
+                groupId: groupId
             })
+            console.log(res)
         })
+        let res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/orders/history`,{
+            userId: userId,
+            groupId: groupId
+        })
+        console.log(res)
+        emptyCart()
+        setCheckout(false)
     }
     
+
+
 
  console.log(products)
     console.log(cart)
