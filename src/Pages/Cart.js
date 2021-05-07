@@ -48,14 +48,14 @@ const Cart = () => {
     
 
  console.log(products)
-    
+    console.log(cart)
 
     return (
         <div>
             
             {products && products.map((product, i) =>
             product && 
-                <CartProduct key={i}  name={product.name} description={product.description} picture={product.image} price={product.price}/>
+                <CartProduct key={i}  cart={cart}name={product.name} description={product.description} picture={product.image} price={product.price}/>
             )}
         </div>
     )   
