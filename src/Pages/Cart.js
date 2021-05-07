@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {useState, useEffect} from 'react'
 import CartProduct from '../Components/CartProduct'
-import {Link} from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 const Cart = () => {
     const[cart,setCart] = useState([])
     const[products, setProducts] = useState()
@@ -9,7 +9,7 @@ const Cart = () => {
     const[address, setAddress] = useState("")
     const[credit, setCredit] = useState('')
     const[total, setTotal] = useState(0)
-    const[reget, setReget] = useState(0)
+    const[redirect, setRedirect] = useState(false)
     const getCart = async() => {
         
         const userId = localStorage.getItem('userId')
@@ -17,8 +17,7 @@ const Cart = () => {
             const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/cart`, {
                 headers:{
                     userId: userId
-                }
-                
+                }  
             })
             setCart(res.data)
             
@@ -28,7 +27,7 @@ const Cart = () => {
         }
         
     }
-    console.log(cart)
+
     useEffect(() => {
         getCart()
     }, [])
@@ -43,12 +42,14 @@ const Cart = () => {
             })
           )
           setProducts(items);
+       
       }
  
 
     useEffect(() => {
         getCartItems()
     }, [cart])
+
     const emptyCart = async () => {
         const userId = localStorage.getItem('userId')
         const res = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/cart/all`, {
@@ -57,10 +58,12 @@ const Cart = () => {
             }
             
         })
+        getCart()
     }
 
     const checkoutCart = () => {
         setCheckout(true)
+        
     }
     
     const submitCheckout =  async (e) => {
@@ -76,14 +79,15 @@ const Cart = () => {
                 address: address,
                 groupId: groupId
             })
-            console.log(res)
+         
         })
         let res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/orders/history`,{
             userId: userId,
             groupId: groupId
         })
-        console.log(res)
+   
         emptyCart()
+        setRedirect(true)
         setCheckout(false)
     }
     
@@ -92,7 +96,8 @@ const Cart = () => {
         let test = 0
     products && products.map((product, i) => {
         test = test + parseInt(product.price)
-        setTotal(test)}
+        setTotal(test)},
+        products.length === 0 && setTotal(0)
     )}
 
     useEffect(() => {
@@ -104,12 +109,13 @@ const Cart = () => {
 
     return (
         <div>
+             { redirect && <Redirect to={`/orders`} exact /> }
             { checkout ?
             <>
             <form onSubmit={submitCheckout}>
-                <input className="checkout" type="text" placeholder="Address" value={address} onChange={(e) => setAddress(e.target.value)} />
-                <input className="checkout" type="text" placeholder="Credit Card Number" value={credit} onChange={(e) => setCredit(e.target.value)} />
-                <input className="checkout" type="submit" value="submit" />
+                <input className="checkout" type="text" placeholder="Address" value={address} onChange={(e) => setAddress(e.target.value)} required/>
+                <input className="checkout" type="text" placeholder="Credit Card Number" value={credit} onChange={(e) => setCredit(e.target.value)} required/>
+                <input className="checkout" type="submit" value="submit"  />
             </form>
             </>
             :
@@ -117,7 +123,7 @@ const Cart = () => {
             <h2>Total Price: ${total}</h2>
             {products && products.map((product, i) =>
             product && 
-                <CartProduct setReget={setReget} getCartItems={getCartItems} key={i}  id={product.id} name={product.name} description={product.description} picture={product.image} price={product.price}/>
+                <CartProduct getCart={getCart} key={i}  id={product.id} name={product.name} description={product.description} picture={product.image} price={product.price}/>
                 
             )}
             <button onClick={ () => {checkoutCart()}}>Checkout</button>
