@@ -3,7 +3,7 @@ const Product = (props) => {
         <div>
             <p>{props.name}</p>
             <p>{props.description}</p>
-            <img src={props.picture} />
+            <img className="pics" src={props.picture} />
             <p>{props.price}</p>
         </div>
     )
