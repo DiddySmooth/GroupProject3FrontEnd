@@ -20,13 +20,10 @@ const Store = () => {
         }
     }
     
-    
-
-    
     useEffect(() => {
         getAllProducts()
     }, [])
-    console.log(allProducts)
+
     return(
         <div>
             {allProducts.map((product, i) =>
