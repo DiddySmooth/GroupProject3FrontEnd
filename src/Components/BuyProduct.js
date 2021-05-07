@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {useParams} from 'react-router-dom'
+import "../Styles/Store.css"
 
 const BuyProduct = (props) => {
 

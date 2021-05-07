@@ -10,23 +10,37 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #CEBC81;
+    background-color: #13f907;
     margin-top: 100px;
     border-radius: 5px;
   }
   .loginFormInput{
     margin: 5px;
     border-radius: 5px;
+    background-color: black;
+    color:#13f907;
     border: solid #19181A 1px
   }
   .loginFormButton{
     margin: 5px;
     border-radius: 5px;
     border: solid #19181A 1px;
-    background-color: #479761;
+    background-color: black;
+    color:#13f907;
     margin-bottom: 20px;
   }
   .loginForm{
     display: flex;
     flex-direction: column;
+  }
+
+  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #13f907;
+    opacity: 1; /* Firefox */
+  }
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color: #13f907;
+  }
+  ::-ms-input-placeholder { /* Microsoft Edge */
+   color: #13f907;
   }

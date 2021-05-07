@@ -1,0 +1,27 @@
+.productcontainer{
+    text-align: center;
+    background-color: black ;
+    background-image: none;
+    width: 300px;
+    
+}
+p{
+    color:red;
+}
+.productmain{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.checkout{
+    margin: 5px;
+    border-radius: 5px;
+    background-color: black;
+    color:#13f907;
+    border: solid #19181A 1px
+}
+h2{
+    color: red;
+    text-align: center;
+}
