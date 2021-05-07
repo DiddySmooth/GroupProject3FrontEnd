@@ -55,7 +55,7 @@ const Cart = () => {
             
             {products && products.map((product, i) =>
             product && 
-                <CartProduct key={i}  cartId="" name={product.name} description={product.description} picture={product.image} price={product.price}/>
+                <CartProduct key={i}  cartId={product.id} name={product.name} description={product.description} picture={product.image} price={product.price}/>
             )}
         </div>
     )   
