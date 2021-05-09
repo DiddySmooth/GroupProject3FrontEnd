@@ -110,7 +110,7 @@ const Cart = () => {
 
 
     return (
-        <div>
+        <div className="productmain">
              { redirect && <Redirect to={`/orders`} exact /> }
             { checkout ?
             <>
