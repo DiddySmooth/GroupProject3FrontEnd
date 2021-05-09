@@ -21,7 +21,7 @@ const Login = () => {
             password: password,
             
         })
-        console.log(res.data)
+
         localStorage.setItem('userId', res.data.encryptedId)
         setUser(res.data.user)
     }

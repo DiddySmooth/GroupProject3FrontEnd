@@ -14,14 +14,14 @@ const Register = () => {
     
     const registerSubmit = async (e) => {
         e.preventDefault()
-        console.log(password,name,email)
+        
         let res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/create`, {
             name: name,
             email: email,
             password: password,
         })
         
-        console.log(res.data)
+
         localStorage.setItem('userId', res.data.encryptedId)
         setUser(res.data.user)
     }

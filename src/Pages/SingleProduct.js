@@ -12,7 +12,7 @@ const SingleProduct = () => {
         try {
 
             const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/products/${params.id}`, {})
-            console.log(res.data)
+
             setProducts(res.data)
             
             

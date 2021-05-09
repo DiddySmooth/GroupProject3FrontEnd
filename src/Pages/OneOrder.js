@@ -16,7 +16,7 @@ const OneOrder = () => {
             }
         })
         setOrder(res.data)
-        console.log(res.data)
+       
     }
 
     useEffect(() => {
@@ -29,9 +29,9 @@ const OneOrder = () => {
             order.map(async (entry, i) => {
                 const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/products/${entry.productId}`)
                 let newObject = res.data
-                //   console.log(entry)
+     
                 newObject.id = entry.id
-                //   console.log(newObject)
+               
                 return newObject
             })
         )

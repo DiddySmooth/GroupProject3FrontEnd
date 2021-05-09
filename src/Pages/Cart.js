@@ -72,7 +72,7 @@ const Cart = () => {
         e.preventDefault()
         const userId = localStorage.getItem('userId')
         const groupId = userId + "|" + new Date()
-        console.log(groupId)
+     
         cart.map( async (entry, i) => {
             let res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/orders`, {
                 userId: userId,

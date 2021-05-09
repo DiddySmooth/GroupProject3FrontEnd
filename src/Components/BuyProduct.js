@@ -5,14 +5,14 @@ import "../Styles/Store.css"
 const BuyProduct = (props) => {
 
     const params = useParams()
-    console.log(params)
+
     const cartSubmit = async() => {
         try {
             const userId = localStorage.getItem('userId')
             const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/cart/${params.id}`, {
                 userId: userId
             })
-            console.log(res.data)
+         
 
       
             
